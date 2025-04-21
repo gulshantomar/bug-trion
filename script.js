@@ -129,15 +129,15 @@ video.forEach(element => {
 
 function videoanime(){
   gsap.to(".page-1 video",{
-    width:"87%",
-    borderRadius:"4.9vw",
-    y:100,
+    width:"90%",
+    // borderRadius,
+    y:130,
     duration:0.1,
     scrollTrigger:{
       trigger:".page-1 video",
       scroll:"#main",
-      start:"top 65%",
-      end:"top 25%",
+      start:"top 60%",
+      end:"top 30%",
       scrub:2
     }
   })
@@ -412,8 +412,8 @@ function partneranime(){
       trigger:".page-4 h1",
       scroll:"#main",
       // markers:true,
-      start:"top 60%",
-      end:"top -10%",
+      start:"top 80%",
+      end:"top 30%",
       scrub:2
     }
   })
@@ -429,7 +429,7 @@ function partneranime(){
     duration:10,
   },"he")
   tl6.to(".page-4 h1",{
-    width:"105%",
+    width:"101%",
     color:"transperent",
     duration:10,
     stagger:2,
@@ -521,39 +521,31 @@ wild.addEventListener("mouseleave",function(){
 })
 }
 marqueone()
-var soc=document.querySelectorAll(".soc")
-var socover=document.querySelectorAll(".socoverlay")
-var socimg=document.querySelectorAll(".soc img:first-of-type")
-gsap.from(soc,{
-  y:100,
-  opacity:0,
-    stagger:0.3,
-  scrollTrigger:{
-    trigger:".soc",
-    scroll:"#main",
-    markers:"true",
-    start:"top 85%",
-    scrub:2
-  }
-})
-  socover.forEach(function(f){
-    f.addEventListener("mouseenter",function(){
-      gsap.to(soc,{
-        width:"100%"
-      })
-      gsap.to(socimg,{
-        rotate:"360deg"
-      })
-    })
-  })
-socover.forEach(function(f){
-  f.addEventListener("mouseleave",function(){
-    gsap.to(soc,{
-      width:"65%"
-    })
-    gsap.to(socimg,{
-      rotate:"0deg"
-    })
-  })
-})
+var soc = document.querySelectorAll(".soc");
+var socover = document.querySelectorAll(".socoverlay");
 
+socover.forEach(function (f, index) {
+  f.addEventListener("mouseenter", function () {
+    soc.forEach(function (s, i) {
+      if (i === index) {
+        gsap.to(s, {
+          width: "100%",
+          opacity: 1,
+        });
+      } else {
+        gsap.to(s, {
+          opacity: 0.2,
+        });
+      }
+    });
+  });
+
+  f.addEventListener("mouseleave", function () {
+    soc.forEach(function (s) {
+      gsap.to(s, {
+        width: "65%",
+        opacity: 1,
+      });
+    });
+  });
+});
